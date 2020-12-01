@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- P6050 P6051 P6300
+    <dimen name="TextSize">15dp</dimen>
+    <dimen name="ButtonHeight">55dp</dimen>
+    
+    <dimen name="SettingWidth">142dp</dimen>
+    <dimen name="SettingWidth2">110dp</dimen>
+     -->
+    
+    <!-- P6045 P6010 P6070 -->
+    <dimen name="TextSize">11dp</dimen>
+    <dimen name="ButtonHeight">45dp</dimen>
+    
+    <dimen name="SettingWidth">122dp</dimen>
+    <dimen name="SettingWidth2">100dp</dimen> 
+
+      
+</resources>

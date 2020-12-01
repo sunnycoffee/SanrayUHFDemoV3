@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <TabHost android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/tabHost"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <TabWidget
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@android:id/tabs"
+    />
+    
+    <FrameLayout
+     android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@android:id/tabcontent"
+     >
+     
+        
+        <!-- TAG2  -->
+
+<LinearLayout
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   android:id="@+id/tab2"
+   android:orientation="vertical"
+    >
+     
+	 <!-- Region Start --> 	    
+   <LinearLayout
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:orientation="vertical" 
+   android:background="#235690"
+   android:layout_weight="1"
+   >
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="1" >
+
+           <TextView
+               android:id="@+id/textViewArea"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="区域设置"
+               android:textSize="20dp" />
+
+           <TextView
+               android:id="@+id/textViewlink"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1.10"
+               android:text="链路设置"
+               android:textSize="20dp" />
+
+       </LinearLayout>
+    	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+        
+    	 <TextView
+    	    android:id="@+id/textViewSave"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="存储" 
+        	android:textSize="20dp" >
+    	</TextView>   
+    	
+    	 <Spinner
+    	     android:id="@+id/sp_region_save"
+    	     android:layout_width="@dimen/SettingWidth"
+    	     android:layout_height="wrap_content"
+    	     android:textSize="20dp" >
+
+    	</Spinner>
+
+    	 <Spinner
+    	     android:id="@+id/sp_rflinklist"
+    	     android:layout_width="wrap_content"
+    	     android:layout_height="wrap_content"
+    	     android:layout_weight="1" />
+    		
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textViewarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="区域"
+            android:textSize="20dp" >
+        </TextView>
+
+        <Spinner
+            android:id="@+id/sp_region_region"
+            android:layout_width="@dimen/SettingWidth"
+            android:layout_height="wrap_content"
+            android:textSize="20dp" >
+			<!--android:layout_weight="0.26"--> 
+        </Spinner>
+
+        <Button
+            android:id="@+id/bt_rflink_get"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="获取" />
+
+        <Button
+            android:id="@+id/bt_rflink_set"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="设置" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+    	<Button
+    	    android:id="@+id/bt_region_get"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="获取"
+        	android:textSize="20dp" >
+    		</Button>
+    		
+    	     <Button
+    	    android:id="@+id/bt_region_set"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:textSize="20dp" 
+        	android:text="设置"
+        	>
+    		</Button>
+    	</LinearLayout>
+    </LinearLayout>
+  <!-- Region END -->  
+
+<LinearLayout
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:orientation="vertical" 
+    android:background="#245660"
+   android:layout_weight="1"
+   >  
+  
+  <TextView
+      android:id="@+id/TimerTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_weight="1"
+      android:text="工作时间和间隔时间"
+      android:textSize="20dp" >
+  </TextView>
+    	
+    	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" >
+
+         <TextView
+    	    android:id="@+id/worktimer"
+        	android:layout_width="65dp"
+        	android:layout_height="wrap_content"
+        	android:text="工作时间"
+        	android:textSize="15dp" >
+    		</TextView>
+    		
+         <SeekBar
+             android:id="@+id/sb_worktime"
+             android:layout_width="@dimen/SettingWidth2"
+             android:layout_height="wrap_content"
+             android:max="65535"
+             android:textSize="11dp"
+             android:progress="0" />
+
+             <TextView
+    	    android:id="@+id/countTXT"
+        	android:layout_width="65dp"
+        	android:layout_height="wrap_content"
+        	android:text="间隔时间"
+        	android:textSize="15dp" >
+    		</TextView>
+         
+             <SeekBar
+             android:id="@+id/sb_inter"
+             android:layout_width="@dimen/SettingWidth2"
+             android:layout_height="wrap_content"
+             android:max="65535"
+             android:textSize="5dp"
+             android:progress="0" />
+             
+    	</LinearLayout>
+    	
+    	
+    	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" > 
+    	    
+         <EditText
+    	    android:id="@+id/et_worktime"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:numeric="integer"
+        	android:maxLength="5"
+        	android:minWidth="80dp"
+        	android:textSize="20dp" 
+        	>
+    		</EditText>
+
+         <TextView
+    	    android:id="@+id/tv_worktime"
+        	android:layout_width="100dp"
+        	android:layout_height="wrap_content"
+        	android:text="0ms"
+        	android:textSize="20dp" 
+        	>
+    		</TextView>
+    		
+         
+         <EditText
+    	    android:id="@+id/et_inter"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:numeric="integer"
+        	android:maxLength="5"
+        	android:minWidth="80dp"
+        	android:textSize="20dp" 
+        	>
+    		</EditText>
+
+         <TextView
+    	    android:id="@+id/tv_inter"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="0ms"
+        	android:textSize="20dp" 
+        	>
+    		</TextView>
+         
+    	</LinearLayout>
+        
+
+    	<LinearLayout
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" >
+    	    
+    	    <Button
+    	    android:id="@+id/bt_timer_get"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="获取"
+        	android:textSize="20dp" >
+    		</Button>
+    		
+    	     <Button
+    	    android:id="@+id/bt_timer_set"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:textSize="20dp" 
+        	android:text="设置"
+        	>
+    		</Button>
+    	</LinearLayout>
+    
+</LinearLayout>
+
+
+<LinearLayout
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:orientation="vertical" 
+    android:background="#A0522D"
+   android:layout_weight="1"
+   >  
+
+  <TextView
+      android:id="@+id/EPCAndTidTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_weight="1"
+      android:text="同时读取EPC和TID"
+      android:textSize="20dp" >
+  </TextView>
+  
+  
+      	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" >
+
+    	    <TextView
+    	        android:id="@+id/countTXTStartQ"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:text="State"
+    	        android:textSize="20dp" >
+    		</TextView>
+    		
+    	     <Spinner
+    	    android:id="@+id/sp_set_startq"
+        	android:layout_width="150dp"
+        	android:layout_height="wrap_content"
+        	android:textSize="20dp" >
+    		</Spinner>
+      	    
+         </LinearLayout>
+         
+      	
+      	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" >
+
+      	<Button
+   	    android:id="@+id/bt_tid_get"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:text="获取"
+       	android:textSize="20dp" >
+   		</Button>
+   		
+   	     <Button
+   	    android:id="@+id/bt_tid_set"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:textSize="20dp" 
+       	android:text="设置"
+       	>
+   		</Button>
+   		   	     
+         </LinearLayout>
+         
+</LinearLayout>
+
+
+<LinearLayout
+   android:id="@+id/RssiLayout"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:orientation="vertical" 
+   android:background="#F4A460"
+   android:layout_weight="1"  
+   >  
+   
+   <TextView
+      android:id="@+id/RssiTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_weight="1"
+      android:text="9200读取RSSI"
+      android:textSize="20dp" >
+  </TextView>
+  
+  
+      	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" >
+    
+      	    
+      	     <TextView
+    	        android:id="@+id/countTXTRssi"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:text="State"
+    	        android:textSize="20dp" >
+    		</TextView>
+    		
+    	     <Spinner
+    	    android:id="@+id/sp_set_rssi"
+        	android:layout_width="150dp"
+        	android:layout_height="wrap_content"
+        	android:textSize="20dp" >
+    		</Spinner>
+    		
+    	        </LinearLayout>
+    	     
+    	   	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:orientation="horizontal" >    
+    	     
+    	<Button
+   	    android:id="@+id/bt_rssi_get"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:text="获取"
+       	android:textSize="20dp" >
+   		</Button>
+   		
+   	     <Button
+   	    android:id="@+id/bt_rssi_set"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:textSize="20dp" 
+       	android:text="设置"
+       	>
+   		</Button>
+   		
+   	      </LinearLayout>     	       
+
+</LinearLayout>
+
+
+ </LinearLayout>
+ 
+ </FrameLayout>
+ </TabHost>
+
+

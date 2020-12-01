@@ -1,0 +1,4 @@
+# Project exclude paths
+/.gradle/
+/Z_P6070_Demo_V3/build/
+/Z_P6070_Demo_V3/build/intermediates/javac/debug/classes/

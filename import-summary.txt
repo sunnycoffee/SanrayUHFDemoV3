@@ -1,0 +1,56 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* ic_launcher-web.png
+* myjar\
+* myjar\SR_ANDROID_JAR.jar
+* myjar\SR_UHF_JAR.jar
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:22.+
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => Z_P6070_Demo_V3\src\main\AndroidManifest.xml
+* assets\ => Z_P6070_Demo_V3\src\main\assets
+* libs\armeabi\libdevapi.so => Z_P6070_Demo_V3\src\main\jniLibs\armeabi\libdevapi.so
+* libs\armeabi\libDeviceAPI.so => Z_P6070_Demo_V3\src\main\jniLibs\armeabi\libDeviceAPI.so
+* libs\armeabi\libirdaSerialPort.so => Z_P6070_Demo_V3\src\main\jniLibs\armeabi\libirdaSerialPort.so
+* libs\armeabi\libuart.so => Z_P6070_Demo_V3\src\main\jniLibs\armeabi\libuart.so
+* libs\cw-deviceapi.jar => Z_P6070_Demo_V3\libs\cw-deviceapi.jar
+* res\ => Z_P6070_Demo_V3\src\main\res\
+* src\ => Z_P6070_Demo_V3\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
