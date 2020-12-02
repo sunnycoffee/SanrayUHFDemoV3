@@ -121,7 +121,7 @@ public class AccessTagActivity extends Activity implements OnClickListener {
 
 				if (FirstStr.equals("[TID]")) { // 点击TID行
 					if (Str_FilterData.length() > 5) { // 存在TID数据
-						Str_FilterData = Str_FilterData.substring(6, Str_FilterData.length());
+						Str_FilterData = Str_FilterData.substring(6);
 
 						String Str_data = "";
 						for (int i = 0; i < Str_FilterData.length() / 2; i++) {
@@ -164,7 +164,7 @@ public class AccessTagActivity extends Activity implements OnClickListener {
 
 			if (MainActivity.isAscii) {
 				try {
-					byte Byt_Ascii[] = Str_FilterData.getBytes("GBK");
+					byte[] Byt_Ascii = Str_FilterData.getBytes("GBK");
 					mSp_acc_length.setSelection((Byt_Ascii.length / 2) - 1);
 				} catch (Exception e) {
 				}
@@ -471,7 +471,7 @@ public class AccessTagActivity extends Activity implements OnClickListener {
 				try
 				{
 				//str_data = str_data.replace(" ","");
-				byte Byt_Ascii[] = str_filter.replace(" ","").getBytes("GBK");//String转换为byte[] 
+				byte[] Byt_Ascii = str_filter.replace(" ","").getBytes("GBK");//String转换为byte[]
 				String StrHex = byteArrayToHexString(Byt_Ascii);
                 int len = StrHex.length() / 2;
                 strArray = new String[len];
@@ -527,7 +527,7 @@ public class AccessTagActivity extends Activity implements OnClickListener {
 				try
 				{
 				//str_data = str_data.replace(" ","");
-				byte Byt_Ascii[] = str_data.replace(" ","").getBytes("GBK");//String转换为byte[] 
+				byte[] Byt_Ascii = str_data.replace(" ","").getBytes("GBK");//String转换为byte[]
 				String StrHex = byteArrayToHexString(Byt_Ascii);
                 int len = StrHex.length() / 2;
                 strArray = new String[len];
@@ -612,7 +612,7 @@ public class AccessTagActivity extends Activity implements OnClickListener {
 				try
 				{
 				//str_data = str_data.replace(" ","");
-				byte Byt_Ascii[] = str_filter.replace(" ","").getBytes("GBK");//String转换为byte[] 
+				byte[] Byt_Ascii = str_filter.replace(" ","").getBytes("GBK");//String转换为byte[]
 				String StrHex = byteArrayToHexString(Byt_Ascii);
                 int len = StrHex.length() / 2;
                 strArray = new String[len];

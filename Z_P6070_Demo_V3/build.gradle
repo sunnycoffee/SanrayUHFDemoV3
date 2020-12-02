@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileOptions.encoding = "GBK"
@@ -36,4 +37,8 @@ dependencies {
     compile files('libs/cw-deviceapi.jar')
     compile files('libs/SR_ANDROID_JAR.jar')
     compile files('libs/SR_UHF_JAR.jar')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

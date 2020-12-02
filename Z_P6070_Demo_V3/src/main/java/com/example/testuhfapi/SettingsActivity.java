@@ -56,13 +56,13 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 
 	private Spinner mSp_startq;
 	private ArrayAdapter<String> adapter_startq;
-	private int int_startq = 0;
+	private final int int_startq = 0;
 	private int int_startq_temp = 0;
 	private static String[] st_q = { "关闭", "打开" };
 	
 	private Spinner mSp_rssi;
 	private ArrayAdapter<String> adapter_rssi;
-	private int int_rssi = 0;
+	private final int int_rssi = 0;
 	private int int_rssi_temp = 0;
 
 	private Button mBt_tid_get, mBt_tid_set;
@@ -285,8 +285,8 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 		handler.postDelayed(new Runnable() {
 			public void run() {
 				EPCAndTID mepcandtid = new EPCAndTID();
-				mepcandtid.com_type = CommandType.GET_EPCAndTID;
-				mepcandtid.state = 0;
+				EPCAndTID.com_type = CommandType.GET_EPCAndTID;
+				EPCAndTID.state = 0;
 				int count = 0;
 				while (true) {
 					try
@@ -294,7 +294,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 					Boolean ret = MainActivity.ReaderController.UHF_CMD(CommandType.GET_EPCAndTID, mepcandtid);
 					if (ret) {
 						setTitle(Str_Get + " "+ "EPC" + Str_And + "TID" + " "+ Str_Success);
-						mSp_startq.setSelection(mepcandtid.state);
+						mSp_startq.setSelection(EPCAndTID.state);
 						//mSound.callAlarm(true, 100);
 						break;
 					}
@@ -318,17 +318,17 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 		handler.postDelayed(new Runnable() {
 			public void run() {
 				 Version9200 ver = new Version9200();
-			     ver.com_type = CommandType.GET_MODULE_VERSION_9200;
-			     ver.RssiState = (byte)0x00;
+			     Version9200.com_type = CommandType.GET_MODULE_VERSION_9200;
+			     Version9200.RssiState = (byte)0x00;
 			     int count = 0;
 			     while(true) {
 			    	 try {
 			    	  Boolean ret = MainActivity.ReaderController.UHF_CMD(CommandType.GET_MODULE_VERSION_9200, ver);
 					 	if (ret) {
-					 		if(ver.RssiState == (byte)0xAA) {
+					 		if(Version9200.RssiState == (byte)0xAA) {
 					 			mSp_rssi.setSelection(1);
 					 		}
-					 		else if(ver.RssiState == (byte)0x55) {
+					 		else if(Version9200.RssiState == (byte)0x55) {
 					 			mSp_rssi.setSelection(0);
 					 		}	
 					 		setTitle(Str_Get + " "+ "Rssi"+Str_State + " "+ Str_Success);
@@ -565,14 +565,14 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 	
 	public void handleGetRssi() {
 	     Version9200 ver = new Version9200();
-	     ver.com_type = CommandType.GET_MODULE_VERSION_9200;
-	     ver.RssiState = (byte)0x00;
+	     Version9200.com_type = CommandType.GET_MODULE_VERSION_9200;
+	     Version9200.RssiState = (byte)0x00;
 	     Boolean ret = MainActivity.ReaderController.UHF_CMD(CommandType.GET_MODULE_VERSION_9200, ver);
 	 	if (ret) {
-	 		if(ver.RssiState == (byte)0xAA) {
+	 		if(Version9200.RssiState == (byte)0xAA) {
 	 			mSp_rssi.setSelection(1);
 	 		}
-	 		else if(ver.RssiState == (byte)0x55) {
+	 		else if(Version9200.RssiState == (byte)0x55) {
 	 			mSp_rssi.setSelection(0);
 	 		}
 	 		
@@ -588,14 +588,14 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
   
 	public void handleSetRssi() {
 		Version9200 ver = new Version9200();
-		ver.com_type = CommandType.SET_MODULE_VERSION_9200;
+		Version9200.com_type = CommandType.SET_MODULE_VERSION_9200;
 		if(int_rssi_temp == 1)//开启
 		{
-			ver.RssiState = (byte)0xAA;
+			Version9200.RssiState = (byte)0xAA;
 		}
 		else if(int_rssi_temp == 0)//关闭
 		{
-			ver.RssiState = (byte)0x55;
+			Version9200.RssiState = (byte)0x55;
 		}
 		Boolean ret = MainActivity.ReaderController.UHF_CMD(CommandType.SET_MODULE_VERSION_9200, ver);
 	     if (ret) {	 		
@@ -773,8 +773,8 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 
 	private void handleSetTID() {
 		EPCAndTID mepcandtid = new EPCAndTID();
-		mepcandtid.com_type = CommandType.SET_EPCAndTID;
-		mepcandtid.state = int_startq_temp;
+		EPCAndTID.com_type = CommandType.SET_EPCAndTID;
+		EPCAndTID.state = int_startq_temp;
 
 		Boolean ret = MainActivity.ReaderController.UHF_CMD(CommandType.SET_EPCAndTID, mepcandtid);
 		if (ret) {
@@ -798,13 +798,13 @@ public class SettingsActivity extends Activity implements OnClickListener, OnSee
 
 	private void handleGetTID() {
 		EPCAndTID mepcandtid = new EPCAndTID();
-		mepcandtid.com_type = CommandType.GET_EPCAndTID;
-		mepcandtid.state = 0;
+		EPCAndTID.com_type = CommandType.GET_EPCAndTID;
+		EPCAndTID.state = 0;
 
 		Boolean ret = MainActivity.ReaderController.UHF_CMD(CommandType.GET_EPCAndTID, mepcandtid);
 		if (ret) {
 			setTitle(Str_Get + " "+ "EPC" + Str_And + "TID" + " "+ Str_Success);
-			mSp_startq.setSelection(mepcandtid.state);
+			mSp_startq.setSelection(EPCAndTID.state);
 			mSound.callAlarm(true, 100);
 		} else {
 

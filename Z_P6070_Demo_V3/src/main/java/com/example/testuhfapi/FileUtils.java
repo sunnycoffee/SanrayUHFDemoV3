@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
 
 public class FileUtils {
 
@@ -77,7 +78,7 @@ public class FileUtils {
 	          InputStream instream = new FileInputStream(file);
 	          if (instream != null) {
 	            InputStreamReader inputreader
-	                = new InputStreamReader(instream, "UTF-8");
+	                = new InputStreamReader(instream, StandardCharsets.UTF_8);
 	            BufferedReader buffreader = new BufferedReader(inputreader);
 	            String line = "";
 	            //∑÷––∂¡»°

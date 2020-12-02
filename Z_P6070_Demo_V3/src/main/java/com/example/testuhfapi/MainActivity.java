@@ -71,14 +71,13 @@ public class MainActivity extends Activity implements MultiLableCallBack {
 
     public static final String Str_DevMode = "P6070";
     public static final boolean Language_English = false;//中英文版版本切换
-    private TextView minfos = null;
 
     // InventorActivity
-    private int Max_Tags_TempBuff = 10000;
-    private String[] tag_str_tmp = new String[Max_Tags_TempBuff];
-    private String[] tag_str_rssi = new String[Max_Tags_TempBuff];
-    private String[] tag_str_tid = new String[Max_Tags_TempBuff];
-    private String[] tag_str_temp = new String[Max_Tags_TempBuff];
+    private final int Max_Tags_TempBuff = 10000;
+    private final String[] tag_str_tmp = new String[Max_Tags_TempBuff];
+    private final String[] tag_str_rssi = new String[Max_Tags_TempBuff];
+    private final String[] tag_str_tid = new String[Max_Tags_TempBuff];
+    private final String[] tag_str_temp = new String[Max_Tags_TempBuff];
     public static int tag_str_tmp_write = 0;
     public static int tag_str_tmp_Read = 0;
     public static int tagsTimes_count = 0;
@@ -90,7 +89,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
     private ListView receptionLV;
     private TextView countTXT;
     private SimpleAdapter recptionSimpleAdapter;
-    private ArrayList<Map<String, String>> receptionArrayList = new ArrayList<Map<String, String>>();
+    private final ArrayList<Map<String, String>> receptionArrayList = new ArrayList<Map<String, String>>();
     private final String lvAdptrlabData = "Data";
     private final String lvAdptrlabRssi = "Rssi";
     private final String lvAdptrlabTemp = "Temp";
@@ -99,20 +98,20 @@ public class MainActivity extends Activity implements MultiLableCallBack {
     private SoundPool soundPool;
     private static Boolean isStart = false;
 
-    private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Date curDate = null;// = new Date(System.currentTimeMillis());
     // PROCESSING
     private Date endDate = null;// = new Date(System.currentTimeMillis());
     private long diff = 0;// = endDate.getTime() - curDate.getTime();
 
-    private int int_power_read = 15;
+    private final int int_power_read = 15;
     public static String ClickEPC = ""; // 点击行EPC号
     private Button tempBtn;
     private CheckBox mCb_temp = null;
 
     private Spinner mSp_power;
     private ArrayAdapter<String> adapter_power;
-    private int int_power = 0;
+    private final int int_power = 0;
     private int int_power_temp = 0;
     private static String[] st_power = {"5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
             "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
@@ -179,7 +178,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rewrite_inventory);
         // ======================================
-        LoadStrActionAndView();
+
 
         ReaderController = new Reader(Str_DevMode);
         ReaderController.SetCallBack(this);// 注册回调使能
@@ -210,10 +209,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             GetPowerRange();
         }
 
-        ;
     }
-
-    ;
 
     /**
      * 启动线程
@@ -228,8 +224,8 @@ public class MainActivity extends Activity implements MultiLableCallBack {
 
     public void GetPowerRange() {
         Version9200 ver = new Version9200();
-        ver.com_type = CommandType.GET_MODULE_VERSION_9200;
-        ver.RssiState = (byte) 0x00;
+        Version9200.com_type = CommandType.GET_MODULE_VERSION_9200;
+        Version9200.RssiState = (byte) 0x00;
         int count = 0;
         try {
             Boolean ret = ReaderController.UHF_CMD(CommandType.GET_MODULE_VERSION_9200, ver);
@@ -363,10 +359,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             }
         }
 
-        ;
     }
-
-    ;
 
 
     /**
@@ -388,37 +381,6 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             PMStateThread = null;
         }
     }
-
-
-    public void LoadStrActionAndView() {
-        if (Language_English) {
-            Str_Action = "Muilt";
-            Str_MuiltEPC = "Muilt";
-            Str_StopMuiltEPC = "Stop";
-            GetVersionSuccess = Str_DevMode + " V3 Version ";
-            GetVersionFail = "Connection failed, please restart the device";
-            Str_ReadTags = "Reading...";
-            Str_Prompt = "Prompt";
-            Str_Confirm = "Confirm";
-            Str_Cancel = "Cancel";
-            Str_Get = "Get";
-            Str_Set = "Set";
-            Str_Power = "Power";
-            Str_Success = "Success";
-            Str_Fail = "Fail";
-            Str_TagsNum = "TagsNum:";
-            Str_ReadTagsTimeClick = "Please do not do any other operation because it is currently in the state of mark reading.";
-            Str_IsExitDemo = "Exit the system or not?";
-            Str_SoundMode0 = "no alarm when reading any tags";
-            Str_SoundMode1 = "alarm when reading any tags";
-            Str_SoundMode2 = "alarm when reading specific tags";
-            StrSelectSoundMode = "Select the sound mode you want to set";
-            StrInputData = "Input filter epc or tid";
-
-            Select_Array = new String[]{Str_SoundMode0, Str_SoundMode1, Str_SoundMode2};
-        }
-    }
-
 
     //==================================================================
 
@@ -520,10 +482,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             }
         }
 
-        ;
     }
-
-    ;
 
     /**
      * 启动线程
@@ -581,10 +540,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             }
         }
 
-        ;
     }
-
-    ;
 
     /**
      * 启动线程
@@ -857,11 +813,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO 自动生成的方法存根
-                if (isChecked) {
-                    isAscii = true;
-                } else {
-                    isAscii = false;
-                }
+                isAscii = isChecked;
             }
         });
 
@@ -1080,13 +1032,13 @@ public class MainActivity extends Activity implements MultiLableCallBack {
     }
 
     public void SoundHandle(String epc, String tid) {
-        if (SoundState == true && SoundData.equals("") == true)// 都响
+        if (SoundState && SoundData.equals(""))// 都响
         {
             newtagFlag++;
-        } else if (SoundState == false && SoundData.equals("") == true)// 都不响
+        } else if (!SoundState && SoundData.equals(""))// 都不响
         {
 
-        } else if (SoundState == true && SoundData.equals("") != true)// 指定数据才响
+        } else if (SoundState && !SoundData.equals(""))// 指定数据才响
         {
             if (SoundMode == EPC_Filter_Mode) {
                 if (SoundData.equals(epc)) {
@@ -1140,7 +1092,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
                                 if (i + 1 != receptionArrayList.size()) { //该EPC号不为最后一行,可能存在TID
                                     String ViewMsg = receptionArrayList.get(i + 1).get(lvAdptrlabData);
                                     if (ViewMsg.contains("TID")) { //有TID
-                                        String Tid = ViewMsg.substring(6, ViewMsg.length());
+                                        String Tid = ViewMsg.substring(6);
                                         if (Tid.equals(tid)) {//有TID,TID相同更新
                                             String t = receptionArrayList.get(i).get(lvAdptrlabTimes);
                                             if (TextUtils.isEmpty(t)) {
@@ -1203,11 +1155,11 @@ public class MainActivity extends Activity implements MultiLableCallBack {
                     if (tid.equals("[TID]")) {
                         //hashMapS.put(lvAdptrlabData, tid + ":无");
                         Str_Num = String.valueOf((receptionArrayList.size() - 1));
-                        String countMessage = Str_TagsNum + Str_Num + String.valueOf("   " + String.valueOf(diff) + "ms");
+                        String countMessage = Str_TagsNum + Str_Num + "   " + diff + "ms";
                         countTXT.setText(countMessage);
                     } else {
                         hashMapS.put(lvAdptrlabData, "[TID]:" + tid);
-                        String countMessage = Str_TagsNum + Str_Num + String.valueOf("   " + String.valueOf(diff) + "ms");
+                        String countMessage = Str_TagsNum + Str_Num + "   " + diff + "ms";
                         countTXT.setText(countMessage);
                         receptionArrayList.add(hashMapS);
                         recptionSimpleAdapter.notifyDataSetChanged();
@@ -1567,7 +1519,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
                 String Str_HeadData = ClickEPC.substring(0, 5);
                 if (Str_HeadData.equals("[TID]")) { // 点击TID行
                     if (ClickEPC.length() > 5) { // 存在TID数据
-                        String Str_FilterData = ClickEPC.substring(6, ClickEPC.length());
+                        String Str_FilterData = ClickEPC.substring(6);
                         String Str_data = "";
                         for (int i = 0; i < Str_FilterData.length() / 2; i++) {
 
@@ -1741,20 +1693,4 @@ public class MainActivity extends Activity implements MultiLableCallBack {
             SoundHandle(result[2], "");
         }
     }
-
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //横向
-            // setContentView(R.layout.file_list_landscape);
-        } else {
-            //竖向
-            // setContentView(R.layout.file_list);
-        }
-    }
-
-
-    // ===========================================================
 }
