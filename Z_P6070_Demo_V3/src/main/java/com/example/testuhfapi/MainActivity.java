@@ -346,7 +346,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
                     //如果不是在Activity里面需要得到当时的上下文句柄 用context.getSystemService...
                     boolean isScreenOn = pm.isScreenOn();
 
-                    if (isScreenOn == false) {
+                    if (!isScreenOn) {
                         Module.getInstance().ioctl_gpio(66, true);
                     } else {
                         Thread.sleep(20);

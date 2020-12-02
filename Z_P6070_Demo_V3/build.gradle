@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:appcompat-v7:22.2.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     compile 'com.android.support:support-v4:22.+'
     compile files('libs/cw-deviceapi.jar')
     compile files('libs/SR_ANDROID_JAR.jar')

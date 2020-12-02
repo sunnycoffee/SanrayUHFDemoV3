@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioManager
 import android.media.SoundPool
+import android.util.Log
 import com.example.z_android_sdk.Reader
 import uhf.api.*
 import kotlin.experimental.inv
@@ -27,6 +28,11 @@ object UHFHelper {
     var tagsTimes_count = 0
     var newtagFlag = 0
 
+    var isScan: Boolean = false
+        private set
+
+    var onScanCallback: ((String?) -> Unit)? = null
+
     private val context: Context by lazy {
         @SuppressLint("PrivateApi")
         val activityThread = Class.forName("android.app.ActivityThread")
@@ -45,19 +51,24 @@ object UHFHelper {
         Reader(DEV_MODE).apply {
             SetCallBack(object : MultiLableCallBack {
                 override fun method(data: ByteArray?) {
+                    Log.e("test", "接收到数据")
                     handleData(data)
                 }
 
                 override fun RecvActiveTag(p0: ActiveTag?) {
+                    Log.e("test", "RecvActiveTag")
                 }
 
                 override fun BlueToothBtn() {
+                    Log.e("test", "BlueToothBtn")
                 }
 
                 override fun BlueToothVoltage(p0: Int) {
+                    Log.e("test", "BlueToothVoltage")
                 }
 
                 override fun CmdRespond(result: Array<out String>?) {
+                    Log.e("test", "接收到CMD")
                     if (result?.get(1) == "F8") { // LTU31读温度
                         tagsTimes_count++
                         tag_str_tmp[tag_str_tmp_write] = result[2]
@@ -74,7 +85,10 @@ object UHFHelper {
     }
 
     private fun handleData(data: ByteArray?) {
-        if (data == null || data.isEmpty()) return
+        if (data == null || data.isEmpty()) {
+            Log.e("test", "数据为空")
+            return
+        }
         val msb = data[0]
         val lsb = data[1]
         val pc: Int = ((msb.toInt() and 0x00ff) shl 8 or (lsb.toInt() and 0x00ff)) and 0xf800 shr 11
@@ -89,6 +103,8 @@ object UHFHelper {
 
         val rssiStr = "" + ((data[2 + pc * 2 + tid.size].toInt() and 0xFF shl 8
                 or (data[2 + pc * 2 + 1 + tid.size].toInt() and 0xFF) - 1).toShort()).inv() / -10.0
+
+        onScanCallback?.invoke("$tmpStr : $tidStr : $rssiStr")
 
         tag_str_tmp[tag_str_tmp_write] = tmpStr
         tag_str_rssi[tag_str_tmp_write] = rssiStr
@@ -112,13 +128,14 @@ object UHFHelper {
     }
 
     fun start() {
-        val flag = reader.UHF_CMD(CommandType.MULTI_QUERY_TAGS_EPC,
+        isScan = reader.UHF_CMD(CommandType.MULTI_QUERY_TAGS_EPC,
                 Multi_query_epc().apply { query_total = 1 })
-
+        Log.e("test", "是否运行 $isScan")
     }
 
     fun stop() {
-        val flag = reader.UHF_CMD(CommandType.STOP_MULTI_QUERY_TAGS_EPC, null)
+        isScan = !reader.UHF_CMD(CommandType.STOP_MULTI_QUERY_TAGS_EPC, null)
+        Log.e("test", "是否运行 $isScan")
     }
 
     fun close() {
