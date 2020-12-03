@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioManager
 import android.media.SoundPool
+import android.os.PowerManager
 import android.util.Log
 import com.example.z_android_sdk.Reader
+import com.rscja.deviceapi.Module
 import uhf.api.*
 import kotlin.experimental.inv
 
@@ -46,6 +48,7 @@ object UHFHelper {
         SoundPool(10, AudioManager.STREAM_SYSTEM, 0)
                 .apply { load(context, R.raw.duka3, 1) }
     }
+    private val scanThread: ScanThread by lazy { ScanThread() }
 
     private val reader: Reader by lazy {
         Reader(DEV_MODE).apply {
@@ -128,18 +131,51 @@ object UHFHelper {
     }
 
     fun start() {
+        scanThread.start();
         isScan = reader.UHF_CMD(CommandType.MULTI_QUERY_TAGS_EPC,
                 Multi_query_epc().apply { query_total = 1 })
         Log.e("test", "是否运行 $isScan")
     }
 
     fun stop() {
+        scanThread.stop()
         isScan = !reader.UHF_CMD(CommandType.STOP_MULTI_QUERY_TAGS_EPC, null)
         Log.e("test", "是否运行 $isScan")
     }
 
     fun close() {
+        stop()
         reader.CloseSerialPort()
+    }
+
+    //扫描线程
+    private class ScanThread : Runnable {
+
+        val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+
+        @Volatile
+        private var mThread: Thread? = null
+
+        fun start() {
+            mThread = Thread(this)
+            mThread?.start()
+        }
+
+        fun stop() {
+            mThread = null
+        }
+
+        override fun run() {
+            val thisThread = Thread.currentThread()
+            while (mThread === thisThread && pm.isInteractive) {
+                try {
+                    Module.getInstance().ioctl_gpio(66, true)
+                    Thread.sleep(20)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 
 }
