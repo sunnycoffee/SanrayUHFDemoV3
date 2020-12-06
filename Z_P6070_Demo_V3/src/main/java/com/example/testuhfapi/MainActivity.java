@@ -180,19 +180,19 @@ public class MainActivity extends Activity implements MultiLableCallBack {
         // ======================================
 
 
-        ReaderController = new Reader(Str_DevMode);
+        if (ReaderController == null) ReaderController = new Reader(Str_DevMode);
         ReaderController.SetCallBack(this);// 注册回调使能
 
         LoadInventorView();
-        LoadMainView();
+//        LoadMainView();
 
         IsInView = true;
 
-        LoadDevModeMethod();
+//        LoadDevModeMethod();
 
         LoadViewHandle();
-        GetPowerThread_start();
-        LoadDevPowerToViewMessage();
+//        GetPowerThread_start();
+//        LoadDevPowerToViewMessage();
     }
 
 
@@ -1301,7 +1301,7 @@ public class MainActivity extends Activity implements MultiLableCallBack {
                 .setPositiveButton(Str_Confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         ExitDemo();
-                        System.exit(0);// 20190508乔佳为页面初始化新增
+//                        System.exit(0);// 20190508乔佳为页面初始化新增
                         finish();
                     }
                 }).setNegativeButton(Str_Cancel, new DialogInterface.OnClickListener() {
